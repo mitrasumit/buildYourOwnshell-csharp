@@ -8,10 +8,13 @@ while (true)
 Console.Write("$ ");
 //Reading User Input
 var command=Console.ReadLine();
+
 if(string.Equals(command,"exit 0"))
     break;
 //Writing user input
-Console.WriteLine($"{command}: command not found");
+Console.WriteLine($"{command.Replace("echo",string.Empty)}");
+
+//Console.WriteLine($"{command}: command not found");
 // Wait for user input
 //Console.ReadLine();
 }
