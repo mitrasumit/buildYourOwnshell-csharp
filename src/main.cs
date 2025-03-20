@@ -24,7 +24,7 @@ else if(command.Contains("type type"))
 else if(command.Contains("echo"))
     Console.WriteLine($"{command.Replace("echo","").Trim()}");
 else
-    Console.WriteLine($"{command}: command not found");
+    Console.WriteLine($"{command.Replace("type","")}: command not found");
 // Wait for user input
 //Console.ReadLine();
 }
