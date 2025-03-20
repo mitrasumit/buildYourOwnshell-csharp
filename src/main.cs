@@ -11,5 +11,5 @@ var command=Console.ReadLine();
 //Writing user input
 Console.WriteLine($"{command}: command not found");
 // Wait for user input
-Console.ReadLine();
+//Console.ReadLine();
 }
