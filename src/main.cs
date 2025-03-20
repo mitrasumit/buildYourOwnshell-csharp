@@ -3,10 +3,7 @@ using System.Net.Sockets;
 using System.Runtime.CompilerServices;
 
 // Uncomment this line to pass the first stage
-var pathVar=Environment.GetEnvironmentVariable("PATH");
-var pathArray=pathVar.Split(Path.PathSeparator);
 
-bool foundFlag=false;
 
 while (true)
 {
@@ -28,6 +25,11 @@ else if(command.Contains("type type"))
 
 else if(command.Contains("type"))
 {
+
+    var pathVar=Environment.GetEnvironmentVariable("PATH");
+    var pathArray=pathVar.Split(Path.PathSeparator);
+
+    bool foundFlag=false;
 
         foreach (var address in pathArray)
         {
