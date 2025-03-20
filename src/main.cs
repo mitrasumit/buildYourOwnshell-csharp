@@ -3,6 +3,11 @@ using System.Net.Sockets;
 using System.Runtime.CompilerServices;
 
 // Uncomment this line to pass the first stage
+var pathVar=Environment.GetEnvironmentVariable("PATH");
+var pathArray=pathVar.Split(Path.PathSeparator);
+
+bool foundFlag=false;
+
 while (true)
 {
 Console.Write("$ ");
@@ -21,8 +26,25 @@ else if(command.Contains("type exit"))
 else if(command.Contains("type type"))
     Console.WriteLine("type is a shell builtin");
 
-else if(command.Contains("type") && command.IndexOf("type")==0)
-    Console.WriteLine($"{command.Replace("type","").Trim()}: not found");
+else if(command.Contains("type"))
+{
+
+        foreach (var address in pathArray)
+        {
+            var wholePath = Path.Join(address, command.Replace("type", "").Trim());
+            if (File.Exists(wholePath))
+            {
+                Console.WriteLine($"{command.Replace("type", "").Trim()} is {wholePath}");
+                foundFlag = true;
+            }
+        }
+
+        if (foundFlag == false)
+        {
+            Console.WriteLine($"{command.Replace("type", "").Trim()}: not found");
+        }
+
+    }
 
 else if(command.Contains("echo"))
     Console.WriteLine($"{command.Replace("echo","").Trim()}");
