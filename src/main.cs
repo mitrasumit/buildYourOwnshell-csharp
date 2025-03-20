@@ -21,10 +21,13 @@ else if(command.Contains("type exit"))
 else if(command.Contains("type type"))
     Console.WriteLine("type is a shell builtin");
 
+else if(command.Contains("type") && command.IndexOf("type")==0)
+    Console.WriteLine($"{command.Replace("type","").Trim()}: not found");
+
 else if(command.Contains("echo"))
     Console.WriteLine($"{command.Replace("echo","").Trim()}");
 else
-    Console.WriteLine($"{command.Replace("type","").Trim()}: command not found");
+    Console.WriteLine($"{command}: command not found");
 // Wait for user input
 //Console.ReadLine();
 }
