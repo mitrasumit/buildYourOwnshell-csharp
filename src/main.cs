@@ -12,9 +12,10 @@ var command=Console.ReadLine();
 if(string.Equals(command,"exit 0"))
     break;
 //Writing user input
-Console.WriteLine($"{command.Replace("echo","").Trim()}");
-
-//Console.WriteLine($"{command}: command not found");
+if(command.Contains("echo"))
+    Console.WriteLine($"{command.Replace("echo","").Trim()}");
+else
+    Console.WriteLine($"{command}: command not found");
 // Wait for user input
 //Console.ReadLine();
 }
