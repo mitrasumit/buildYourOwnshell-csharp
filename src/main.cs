@@ -38,6 +38,7 @@ else if(command.Contains("type"))
             {
                 Console.WriteLine($"{command.Replace("type", "").Trim()} is {wholePath}");
                 foundFlag = true;
+                break;
             }
         }
 
