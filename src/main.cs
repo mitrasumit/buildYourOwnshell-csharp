@@ -67,11 +67,14 @@ static void cdCommand(string command)
 {
     string path = command.Replace("cd", "").Trim();
 
+    
+
     try
     {
-        Directory.SetCurrentDirectory(path);
+        string newPath=Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(),$"{path}"));
+        Directory.SetCurrentDirectory(newPath);
     }
-    catch (Exception ex)
+    catch (Exception)
     {
         Console.WriteLine($"cd: {path}: No such file or directory");
     }
