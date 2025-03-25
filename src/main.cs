@@ -106,6 +106,9 @@ static void typeBuiltin(string command)
 
     else if(command.Contains("type type"))
         Console.WriteLine("type is a shell builtin");
+
+    else if(command.Contains("type pwd"))
+        Console.WriteLine("pwd is a shell builtin");
     else
     {
         var pathArray = GetPath();
