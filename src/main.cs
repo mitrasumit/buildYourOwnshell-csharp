@@ -66,7 +66,7 @@ static void customCommand(string command)
 
         if (File.Exists(wholePath))
         {
-            Process.Start(wholePath,commandParts[1]);
+            Process.Start(commandParts[0],commandParts[1]);
             foundFlag=true;
             break;
         }
