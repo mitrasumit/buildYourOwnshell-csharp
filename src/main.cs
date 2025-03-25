@@ -42,6 +42,12 @@ while (whileFlag)
                 typeBuiltin(command);
                 break;
             }
+        
+        case "pwd":
+            {
+                Console.WriteLine(Directory.GetCurrentDirectory());
+                break;
+            }
         default:
             {
                 customCommand(command);
