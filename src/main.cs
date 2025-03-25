@@ -66,12 +66,19 @@ while (whileFlag)
 static void cdCommand(string command)
 {
     string path = command.Replace("cd", "").Trim();
+    string newPath=string.Empty;
 
-    
-
-    try
+    if(string.Equals(path,"~"))
     {
-        string newPath=Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(),$"{path}"));
+        newPath=Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+    }
+    else
+    {
+        newPath=Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(),$"{path}"));
+    }
+    
+    try
+    {      
         Directory.SetCurrentDirectory(newPath);
     }
     catch (Exception)
