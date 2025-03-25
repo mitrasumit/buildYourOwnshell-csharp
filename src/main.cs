@@ -2,7 +2,7 @@ using System.Diagnostics;
 
 string builtinPresent;
 
-bool whileFlag=true;
+bool whileFlag = true;
 
 while (whileFlag)
 {
@@ -42,10 +42,16 @@ while (whileFlag)
                 typeBuiltin(command);
                 break;
             }
-        
+
         case "pwd":
             {
                 Console.WriteLine(Directory.GetCurrentDirectory());
+                break;
+            }
+
+        case "cd":
+            {
+                cdCommand(command);
                 break;
             }
         default:
@@ -57,11 +63,25 @@ while (whileFlag)
     }
 }
 
+static void cdCommand(string command)
+{
+    string path = command.Replace("cd", "").Trim();
+
+    try
+    {
+        Directory.SetCurrentDirectory(path);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"cd: {path}: No such file or directory");
+    }
+}
+
 static void customCommand(string command)
 {
     string[] paths = GetPath();
 
-    string[] commandParts=command.Split(" ");
+    string[] commandParts = command.Split(" ");
 
     bool foundFlag = false;
 
@@ -72,23 +92,23 @@ static void customCommand(string command)
 
         if (File.Exists(wholePath))
         {
-            Process.Start(commandParts[0],commandParts[1]);
-            foundFlag=true;
+            Process.Start(commandParts[0], commandParts[1]);
+            foundFlag = true;
             break;
         }
     }
 
     if (foundFlag == false)
-            Console.WriteLine($"{commandParts[0].Trim()}: not found");
+        Console.WriteLine($"{commandParts[0].Trim()}: not found");
 
 
 }
 
 static bool CheckIfValidCommand(string command)
 {
-    command=command.Trim();
+    command = command.Trim();
 
-    if(string.IsNullOrEmpty(command) || string.IsNullOrWhiteSpace(command))
+    if (string.IsNullOrEmpty(command) || string.IsNullOrWhiteSpace(command))
     {
         return false;
     }
@@ -98,16 +118,16 @@ static bool CheckIfValidCommand(string command)
 
 static void typeBuiltin(string command)
 {
-    if(command.Contains("type echo"))
-    Console.WriteLine("echo is a shell builtin");
+    if (command.Contains("type echo"))
+        Console.WriteLine("echo is a shell builtin");
 
-    else if(command.Contains("type exit"))
-    Console.WriteLine("exit is a shell builtin");
+    else if (command.Contains("type exit"))
+        Console.WriteLine("exit is a shell builtin");
 
-    else if(command.Contains("type type"))
+    else if (command.Contains("type type"))
         Console.WriteLine("type is a shell builtin");
 
-    else if(command.Contains("type pwd"))
+    else if (command.Contains("type pwd"))
         Console.WriteLine("pwd is a shell builtin");
     else
     {
